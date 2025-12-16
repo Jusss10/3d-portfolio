@@ -14,8 +14,14 @@ export const cameraPresets: Record<string, CameraPreset> = {
   },
 
   bureauFocus: {
-    position: new THREE.Vector3(2, 1, 1),
-    target: new THREE.Vector3(1.5, 1, 0),
+    position: new THREE.Vector3(-1.5, 1.5, 4),
+    target: new THREE.Vector3(-6, 2, 2),
+    transitionSpeed: 0.08,
+  },
+
+  musicFocus: {
+    position: new THREE.Vector3(0.2, 2, 0.1),
+    target: new THREE.Vector3(0.2, 2, 0),
     transitionSpeed: 0.08,
   },
 }

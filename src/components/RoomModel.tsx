@@ -12,20 +12,15 @@ type Props = {
 export default function RoomModel({ setHovered, setCameraPreset }: Props) {
   const { scene } = useGLTF("/models/Room.glb")
   const bureauGLTF = useGLTF("/models/Bureau.glb")
+  const musicGLTF = useGLTF("/models/Music.glb")
   const bureauScene = bureauGLTF.scene
+  const MusicScene = musicGLTF.scene
 
-  const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
-    console.log('Pointer over:', e.object)
-    setHovered(e.object)
-  }
-  const handlePointerOut = () => {
-    console.log('Pointer out')
-    setHovered(null)
-  }
-  const handleClick = () => {
-    console.log('Bureau clicked, setting camera to bureauFocus')
-    setCameraPreset('bureauFocus')
-  }
+  const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {setHovered(event.object)}
+  const handlePointerOut = () => {setHovered(null)}
+  const handleClick = () => {setCameraPreset('bureauFocus')}
+
+  const handleClickMusic = () => {setCameraPreset('musicFocus')}
 
   return (
     <>
@@ -35,6 +30,12 @@ export default function RoomModel({ setHovered, setCameraPreset }: Props) {
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onClick={handleClick}
+      />
+      <primitive 
+        object={MusicScene} 
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        onClick={handleClickMusic}
       />
     </>
   )
