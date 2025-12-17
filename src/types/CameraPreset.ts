@@ -8,9 +8,9 @@ export interface CameraPreset {
 
 export const cameraPresets: Record<string, CameraPreset> = {
   default: {
-    position: new THREE.Vector3(5, 2, 7.5),
-    target: new THREE.Vector3(0, 1, 0),
-    transitionSpeed: 0.1,
+    position: new THREE.Vector3(5, 2, 6.5),
+    target: new THREE.Vector3(-1, 1, -1),
+    transitionSpeed: 0.09,
   },
 
   bureauFocus: {
@@ -22,6 +22,12 @@ export const cameraPresets: Record<string, CameraPreset> = {
   musicFocus: {
     position: new THREE.Vector3(0.2, 2, 0.1),
     target: new THREE.Vector3(0.2, 2, 0),
+    transitionSpeed: 0.08,
+  },
+
+  booksFocus: {
+    position: new THREE.Vector3(3.5, 3, 1),
+    target: new THREE.Vector3(4, 3, 0),
     transitionSpeed: 0.08,
   },
 }
