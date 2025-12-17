@@ -3,15 +3,14 @@ import React, { Suspense, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
 import RoomModel from './RoomModel'
-import {EffectComposer, Outline } from '@react-three/postprocessing'
+import {EffectComposer, Outline, Noise, Pixelation, Vignette } from '@react-three/postprocessing'
 import { cameraPresets } from '../types/CameraPreset'
 import CameraController from './CameraController'
 
 //global scene behaviour
 export default function Room() {
-
-  const [hovered, setHovered] = useState<THREE.Object3D | null>(null)
   const [activePreset, setActivePreset] = useState<keyof typeof cameraPresets>("default")
+  const [hovered, setHovered] = useState<THREE.Object3D[] | null>(null)
 
   // Debug: log preset changes
   useEffect(() => {
@@ -21,6 +20,7 @@ export default function Room() {
   return (
 		<div className="w-full h-screen">
 			<Canvas
+			  dpr={[0.5, 0.5]}
 				camera={{
 					position: [
 						cameraPresets.default.position.x,
@@ -32,7 +32,9 @@ export default function Room() {
 				gl={{
 					antialias: false,
 					toneMapping: THREE.NoToneMapping,
-				}}>
+				}}
+				onPointerMissed={() => setHovered(null)}
+			>
 				<CameraController preset={cameraPresets[activePreset]} />
 
 				<Suspense fallback={null}>
@@ -44,7 +46,13 @@ export default function Room() {
 				</Suspense>
 
 				<EffectComposer autoClear={false}>
-					<Outline selection={hovered ? [hovered] : []} edgeStrength={3} />
+					<Outline
+						selection={activePreset === "default" ? hovered ?? [] : []}
+						edgeStrength={10}
+					/>
+					<Pixelation granularity={0.7} />
+					<Noise opacity={0.02} />
+					
 				</EffectComposer>
 			</Canvas>
 			{activePreset !== "default" && (

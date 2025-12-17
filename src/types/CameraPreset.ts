@@ -8,14 +8,14 @@ export interface CameraPreset {
 
 export const cameraPresets: Record<string, CameraPreset> = {
   default: {
-    position: new THREE.Vector3(5, 2, 6.5),
-    target: new THREE.Vector3(-1, 1, -1),
+    position: new THREE.Vector3(5, 1, 7),
+    target: new THREE.Vector3(-1, 0.5, -1),
     transitionSpeed: 0.09,
   },
 
   bureauFocus: {
-    position: new THREE.Vector3(-1.5, 1.5, 4),
-    target: new THREE.Vector3(-6, 2, 2),
+    position: new THREE.Vector3(-1.5, 2, 4),
+    target: new THREE.Vector3(-6, 1, 2),
     transitionSpeed: 0.08,
   },
 
