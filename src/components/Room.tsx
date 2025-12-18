@@ -50,8 +50,7 @@ export default function Room() {
 						selection={activePreset === "default" ? hovered ?? [] : []}
 						edgeStrength={10}
 					/>
-					<Pixelation granularity={0.7} />
-					<Noise opacity={0.02} />
+					<Pixelation granularity={0.02} />
 					
 				</EffectComposer>
 			</Canvas>
