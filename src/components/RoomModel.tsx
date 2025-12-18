@@ -1,10 +1,8 @@
 "use client"
 import { useGLTF } from "@react-three/drei"
-import { useEffect, useRef } from 'react'
 import { ThreeEvent } from "@react-three/fiber"
 import * as THREE from 'three'
 import { cameraPresets } from '../types/CameraPreset'
-import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js'
 
 
 type Props = {
@@ -38,6 +36,13 @@ export default function RoomModel({ setHovered, setCameraPreset }: Props) {
   const handleClickMusic = () => {setCameraPreset('musicFocus')}
   const handleClickBooks = () => {setCameraPreset('booksFocus')}
 
+  const openExternal = (path?: string) => {
+    if (typeof window !== 'undefined') {
+      const url = path ? `/external${path}` : `/external`
+      window.open(url, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
     <>
       <primitive object={scene} />
@@ -49,6 +54,10 @@ export default function RoomModel({ setHovered, setCameraPreset }: Props) {
         }}
         onPointerOut={handlePointerOut}
         onClick={handleClickBureau}
+        onDoubleClick={(e: ThreeEvent<MouseEvent>) => {
+          e.stopPropagation()
+          openExternal()
+        }}
       />
       <primitive 
         object={MusicScene} 
