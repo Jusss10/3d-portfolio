@@ -36,13 +36,6 @@ export default function RoomModel({ setHovered, setCameraPreset }: Props) {
   const handleClickMusic = () => {setCameraPreset('musicFocus')}
   const handleClickBooks = () => {setCameraPreset('booksFocus')}
 
-  const openExternal = (path?: string) => {
-    if (typeof window !== 'undefined') {
-      const url = path ? `/external${path}` : `/external`
-      window.open(url, '_blank', 'noopener,noreferrer')
-    }
-  }
-
   return (
     <>
       <primitive object={scene} />
@@ -54,10 +47,6 @@ export default function RoomModel({ setHovered, setCameraPreset }: Props) {
         }}
         onPointerOut={handlePointerOut}
         onClick={handleClickBureau}
-        onDoubleClick={(e: ThreeEvent<MouseEvent>) => {
-          e.stopPropagation()
-          openExternal()
-        }}
       />
       <primitive 
         object={MusicScene} 

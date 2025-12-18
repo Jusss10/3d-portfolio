@@ -20,7 +20,6 @@ export default function Room() {
   return (
 		<div className="w-full h-screen">
 			<Canvas
-			  dpr={[0.5, 0.5]}
 				camera={{
 					position: [
 						cameraPresets.default.position.x,
